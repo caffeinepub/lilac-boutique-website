@@ -1,0 +1,281 @@
+{
+  "kind": "build_request",
+  "title": "LilaC Boutique luxury abaya website with catalog, WhatsApp ordering, contact page, and admin dashboard",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Implement a consistent luxury boutique UI theme for “LilaC Boutique” using deep purple as the primary color, with black + gold accents, clean white backgrounds, elegant script headings + sans-serif body typography, and soft scroll/section animations across the site.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Use a premium, feminine, luxury design matching the logo style (purple, black, gold accents, clean white background).",
+          "Fonts: Elegant script for headings + clean sans-serif for body",
+          "Soft animations on scroll"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All pages share a single design system (colors, typography, spacing, button styles).",
+        "Animations are subtle and do not block content interaction or navigation.",
+        "No user-facing text is non-English."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Create the public site navigation and pages: Homepage, Abaya Collection, Current Offers, Contact, and Product Details pages, with a header that displays the logo/brand name and links to the main pages.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "🏠 Homepage Sections",
+          "👗 Abaya Collection Page",
+          "🔥 Current Offers Page",
+          "📍 Contact Page",
+          "Each product page should have:"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A user can navigate between Homepage, Collection, Offers, Contact without dead links.",
+        "Product cards and product details are accessible from the Collection and Offers pages.",
+        "Brand name “LilaC Boutique” and tagline “Tailoring & Embroidery” are visible in the header or homepage hero."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Build the Homepage hero section with logo display and the exact copy: Headline “Elegant Abaya Collection in Abu Dhabi”; subtext “Custom Tailoring & Embroidery – Latest Designs & Offers”; and CTA buttons “View Collection” (navigates to the Collection page) and “Order on WhatsApp” (opens WhatsApp chat to +971 585473939).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Headline: “Elegant Abaya Collection in Abu Dhabi”",
+          "Subtext: “Custom Tailoring & Embroidery – Latest Designs & Offers”",
+          "Buttons:\n\nView Collection\n\nOrder on WhatsApp"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Hero headline and subtext match exactly (including punctuation).",
+        "“View Collection” navigates to the Collection page route.",
+        "“Order on WhatsApp” opens a wa.me link for +971 585473939 in a new tab/window."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Implement backend data models and APIs to support: Abaya products (multiple photos, model name, price in AED, available sizes, available colors, fabric details, embroidery details, stock availability, isNew flag, upload date), offers (discounted price and old price), and homepage offer banners (for slider).",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Product cards must include:\n\nMultiple photos\n\nModel name\n\nPrice (AED)\n\nSizes available\n\nFabric details\n\nEmbroidery details\n\nOffer badge if discounted",
+          "Highlight discounted abayas\nShow old price + new price",
+          "Change homepage banners",
+          "Mark as NEW",
+          "Toggle stock availability",
+          "Upload date visible"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend exposes query methods to list products (with sorting and filter parameters) and get a single product by id.",
+        "Each product includes: photos (0..n), model name, priceAed, sizes, colors, fabricDetails, embroideryDetails, inStock, isNew, created/upload date, and optional offer fields (old/new price).",
+        "Backend exposes methods to list and update offer banner items for the slider."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Build the Abaya Collection page with product cards displaying multiple photos, model name, price (AED), sizes available, fabric details, embroidery details, an offer badge when discounted, an “Order via WhatsApp” button, and an “Enquire Now” button that opens an enquiry form pre-filled with the selected product.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "👗 Abaya Collection Page",
+          "Product cards must include:\n\nMultiple photos\n\nModel name\n\nPrice (AED)\n\nSizes available\n\nFabric details\n\nEmbroidery details\n\nOffer badge if discounted\n\n“Order via WhatsApp” button\n\n“Enquire Now” form button"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Product cards display all requested fields when present.",
+        "If a product has an offer, an offer badge is shown and pricing clearly indicates the discounted state.",
+        "“Order via WhatsApp” opens WhatsApp with a product-specific prefilled message (see REQ-9).",
+        "“Enquire Now” opens an enquiry form with the product already selected."
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Add Collection page filters: New arrivals, Offers, Price range, Size, and Color; filters must update the visible product list without a full page reload.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Filters:\n\nNew arrivals\n\nOffers\n\nPrice range\n\nSize\n\nColor"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Each listed filter exists in the UI and changes the displayed list.",
+        "The Offers filter shows only discounted products.",
+        "New arrivals filter/sort prioritizes the latest uploaded items (see REQ-8).",
+        "Filtering state is reflected in the URL (query params) or persisted during navigation within the session."
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Create a Current Offers page that highlights discounted abayas with old price + new price, and includes an offer banner slider that is admin-editable.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "🔥 Current Offers Page",
+          "Highlight discounted abayas",
+          "Show old price + new price",
+          "Offer banner slider",
+          "Admin editable anytime"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Offers page shows only products with an active discount.",
+        "For discounted products, old price and new price are both shown clearly in AED.",
+        "A banner slider component is present and pulls its slides from backend-managed banner data."
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Implement New Arrivals behavior: latest uploaded products appear first where applicable, show a visible upload date, and display a “NEW” ribbon/tag on products marked as new.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "🆕 New Arrivals Section",
+          "Automatically show latest uploaded abayas first",
+          "“NEW” ribbon tag",
+          "Upload date visible",
+          "Mark as NEW"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend stores an upload/created timestamp per product and returns it.",
+        "UI shows upload date for each product in list and/or detail views.",
+        "Products marked isNew display a “NEW” tag; sorting by newest is correct."
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Create a Product Details page that supports a quick order flow: size selector, custom tailoring request text box, and a WhatsApp order button that opens WhatsApp to +971 585473939 with the exact auto message template: “Hello, I want to order this abaya model: [Product Name]” (with [Product Name] replaced by the product model name).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "💬 Quick Order System",
+          "Each product page should have:\n\nWhatsApp order button with auto message:\n“Hello, I want to order this abaya model: [Product Name]”\n\nSize selector\n\nCustom tailoring request box"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Size selector is populated from the product’s available sizes.",
+        "Custom tailoring request box accepts free text and is included in the WhatsApp message if provided (appended after the required template).",
+        "WhatsApp link includes the required template with the correct product name and opens successfully."
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Build the Contact page with the exact business information and features: display “Lila Boutique – Tailoring & Embroidery”, the full address “Al Khalidiya, Behind Muhairi Centre – Building 28, Abu Dhabi – UAE”, and Phone/WhatsApp “+971 585473939”, plus click-to-call, click-to-WhatsApp, a Google Map embed, and a contact form that submits enquiries to the backend.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "📍 Contact Page",
+          "Show clearly:\n\nLila Boutique – Tailoring & Embroidery\nAl Khalidiya, Behind Muhairi Centre – Building 28\nAbu Dhabi – UAE\nPhone / WhatsApp: +971 585473939",
+          "Features:\n\nClick-to-call\n\nClick-to-WhatsApp\n\nGoogle Map embed\n\nContact form"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Displayed text matches exactly for name, address, and phone/WhatsApp number.",
+        "Click-to-call uses a tel: link for +971 585473939.",
+        "Click-to-WhatsApp opens a wa.me link for +971 585473939.",
+        "Map embed renders via an iframe embed (no external API key required).",
+        "Contact form submissions are stored as enquiries in the backend and visible in admin (REQ-12)."
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "text": "Implement a secure Admin Dashboard with login using Internet Identity and authorization that restricts admin access to an allowlist of admin principals stored in the backend.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "🔐 ADMIN DASHBOARD (IMPORTANT)\n\nCreate secure admin panel login."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Unauthenticated users cannot access admin routes; they are redirected to an admin login screen.",
+        "Authenticated non-admin principals receive an access denied state and cannot perform admin mutations.",
+        "Backend stores and checks an admin allowlist before allowing any admin write operation."
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "text": "Admin dashboard features: allow admins to add/edit/delete products; upload and manage multiple product images; set prices in AED; manage sizes and colors; mark/unmark NEW; add/remove offers (old price/new price); toggle stock availability; edit homepage offer banners; update contact info; view customer enquiries; download a customer list; and manage enquiry status (New/Contacted/Ordered) including a WhatsApp reply shortcut.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Admin can:\n\nAdd new abaya products\n\nUpload images\n\nSet prices\n\nAdd sizes & colors\n\nMark as NEW\n\nAdd/remove offers\n\nEdit products\n\nDelete products\n\nChange homepage banners\n\nUpdate contact info\n\nView customer enquiries\n\nDownload customer list\n\nToggle stock availability",
+          "📊 Customer Enquiry Panel\n\nAdmin sees:\n\nCustomer name\n\nPhone\n\nProduct selected\n\nMessage\n\nDate\n\nWhatsApp reply shortcut\n\nStatus: New / Contacted / Ordered"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Admin can create, update, and delete products and see changes reflected immediately in public pages.",
+        "Admin can upload multiple images per product and reorder/remove them.",
+        "Admin can set/clear an offer with old price and new price; public UI reflects discounts and offer badges.",
+        "Admin can toggle isNew and inStock flags.",
+        "Admin can manage a list of banner slides used by the Offers page slider and/or homepage banner area.",
+        "Admin can update contact info stored in backend and public Contact page reflects updates.",
+        "Admin can view enquiries with: name, phone, product, message, date, status; can change status among New/Contacted/Ordered.",
+        "WhatsApp reply shortcut opens WhatsApp to the customer number (if provided) with a prefilled response context.",
+        "Customer list download exports a CSV file of enquiry contacts (at minimum: name, phone, date, product where available)."
+      ]
+    }
+  ],
+  "constraints": [
+    "Backend must remain a single Motoko actor (no additional backend services).",
+    "Do not edit files under frontend/src/components/ui or any immutable paths listed in SYSTEM_CONTEXT (compose components instead).",
+    "Use English for any user-facing text."
+  ],
+  "nonGoals": [
+    "Do not integrate third-party authentication other than Internet Identity.",
+    "Do not implement real-time chat or WebSockets.",
+    "Do not integrate external databases or cloud services.",
+    "Do not implement payment processing unless explicitly requested later."
+  ],
+  "imageRequirements": {
+    "required": [
+      "Luxury fabric-like abstract hero background with deep purple gradient and subtle gold accents (hero-bg.dim_1920x1080.png)",
+      "Elegant repeating pattern inspired by arabesque motifs in very light gold on white (pattern-bg.dim_2048x2048.png)",
+      "Set of 3 minimal offer slider banners with purple/black/gold luxury style, no text (offer-banner-1.dim_1600x500.png)",
+      "Set of 3 minimal offer slider banners with purple/black/gold luxury style, no text (offer-banner-2.dim_1600x500.png)",
+      "Set of 3 minimal offer slider banners with purple/black/gold luxury style, no text (offer-banner-3.dim_1600x500.png)",
+      "Square product placeholder image with a premium boutique aesthetic (product-placeholder.dim_800x800.png)"
+    ],
+    "edits": []
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-13T14:19:12.293Z",
+  "summary": "Diff adds a Motoko backend actor with product/enquiry/contact/offer types plus admin authorization mixins, and adds a frontend with routing, luxury-themed CSS, product cards/filters, an enquiry dialog, an offers banner slider, and an Internet Identity–guarded admin area. Several requested behaviors (especially richer enquiry fields, admin feature completeness, and backend filtering/sorting APIs) are not evidenced or are stubbed.",
+  "missing_requirements": [
+    {
+      "id": "REQ-4",
+      "requirement": "Backend query methods to list products with sorting and filter parameters (and get product by id).",
+      "reason": "Frontend hook calls `actor.getAllProducts()` with no parameters, and the shown backend portion does not evidence any list method that accepts sort/filter parameters.",
+      "evidence": [
+        "frontend/src/hooks/useQueries.ts",
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "requirement": "Contact form submissions stored as enquiries in backend and visible in admin with required fields (name, phone, product, message, date, status).",
+      "reason": "Backend `Enquiry` type includes `name`, `email`, `message`, `createdAt`, `status` but does not include phone/WhatsApp field or product reference; the submit hook sends only `{ name, email, message }`.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/hooks/useQueries.ts",
+        "frontend/src/components/enquiry/EnquiryDialog.tsx"
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "requirement": "Admin can update contact info stored in backend and public Contact page reflects updates.",
+      "reason": "Admin Contact page is a placeholder (“coming soon...”) with no form or mutation logic shown.",
+      "evidence": [
+        "frontend/src/pages/admin/ContactAdminPage.tsx",
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "requirement": "Admin can manage enquiries: view details (including phone and product), change status among New/Contacted/Ordered, and use WhatsApp reply shortcut; customer list download as CSV.",
+      "reason": "No implementation for enquiries admin UI/actions is evidenced in the provided diff summary (Enquiries admin page file is not shown), and backend enquiry model as shown lacks phone/product fields needed for these features.",
+      "evidence": [
+        "frontend/src/App.tsx",
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "requirement": "Admin product management: add/edit/delete products; upload/manage multiple images with reorder/remove; set/clear offers; toggle NEW and stock availability; changes reflected in public pages.",
+      "reason": "While backend includes an `addProduct` admin method (truncated), the diff summary does not provide evidence of the required full CRUD set, image reorder/remove, or the admin UI pages implementing these controls.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/App.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "User profile management APIs (get/save user profile) with authorization checks.",
+      "reason": "BuildRequest does not request any user profile feature on frontend or backend.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "description": "Secret-token based access-control initialization via URL parameter `caffeineAdminToken`.",
+      "reason": "BuildRequest specifies admin access via Internet Identity + backend allowlist; it does not request or mention an additional secret-token bootstrap mechanism.",
+      "evidence": [
+        "frontend/src/hooks/useActor.ts"
+      ]
+    },
+    {
+      "description": "Offer banner slider overlays and fallback banners with text labels like “Special Offer 1”.",
+      "reason": "Requested offer banner images are specified as “no text”, and requirements only state the slider pulls slides from backend-managed banner data—no requirement to render banner text overlays or generate fallback labeled banners.",
+      "evidence": [
+        "frontend/src/components/offers/OfferBannerSlider.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.68,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/ScrollReveal.tsx",
+    "frontend/src/components/auth/AccessDeniedScreen.tsx",
+    "frontend/src/components/auth/AdminRouteGuard.tsx",
+    "frontend/src/components/enquiry/EnquiryDialog.tsx",
+    "frontend/src/components/layout/SiteFooter.tsx",
+    "frontend/src/components/layout/SiteHeader.tsx",
+    "frontend/src/components/offers/OfferBannerSlider.tsx",
+    "frontend/src/components/products/ProductCard.tsx",
+    "frontend/src/components/products/ProductFilters.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useAdminStatus.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/CollectionPage.tsx",
+    "frontend/src/pages/ContactPage.tsx",
+    "frontend/src/pages/HomePage.tsx",
+    "frontend/src/pages/OffersPage.tsx",
+    "frontend/src/pages/ProductDetailsPage.tsx",
+    "frontend/src/pages/admin/AdminDashboardPage.tsx",
+    "frontend/src/pages/admin/AdminLoginPage.tsx",
+    "frontend/src/pages/admin/ContactAdminPage.tsx",
+    "frontend/src/pages/admin/EnquiriesAdminPage.tsx",
+    "frontend/src/pages/admin/OffersAdminPage.tsx",
+    "frontend/src/pages/admin/ProductsAdminPage.tsx",
+    "frontend/src/utils/format.ts",
+    "frontend/src/utils/productFiltering.ts",
+    "frontend/src/utils/urlParams.ts",
+    "frontend/src/utils/whatsapp.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

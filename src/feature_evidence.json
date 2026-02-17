@@ -1,0 +1,256 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-implement-a-consistent-luxury-boutique-ui-theme-for-lilac-boutique-using-deep-purple-as-the-primary-color-with-black-gold-accents-clean-white-backgrounds-elegant-script-headings-sans-serif-body-typography-and-soft-scroll-section-animations-across-the-site",
+      "featureTitle": "Implement a consistent luxury boutique UI theme for “LilaC Boutique” using deep purple as the primary color, with black + gold accents, clean white backgrounds, elegant script headings + sans-serif body typography, and soft scroll/section animations across the site.",
+      "files": [
+        "frontend/index.css",
+        "frontend/index.html",
+        "frontend/src/components/ScrollReveal.tsx",
+        "frontend/src/main.tsx",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-the-public-site-navigation-and-pages-homepage-abaya-collection-current-offers-contact-and-product-details-pages-with-a-header-that-displays-the-logo-brand-name-and-links-to-the-main-pages",
+      "featureTitle": "Create the public site navigation and pages: Homepage, Abaya Collection, Current Offers, Contact, and Product Details pages, with a header that displays the logo/brand name and links to the main pages.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/layout/SiteFooter.tsx",
+        "frontend/src/components/layout/SiteHeader.tsx",
+        "frontend/src/components/products/ProductCard.tsx",
+        "frontend/src/pages/CollectionPage.tsx",
+        "frontend/src/pages/ContactPage.tsx",
+        "frontend/src/pages/HomePage.tsx",
+        "frontend/src/pages/OffersPage.tsx",
+        "frontend/src/pages/ProductDetailsPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-the-homepage-hero-section-with-logo-display-and-the-exact-copy-headline-elegant-abaya-collection-in-abu-dhabi-subtext-custom-tailoring-embroidery-latest-designs-offers-and-cta-buttons-view-collection-navigates-to-the-collection-page-and-order-on-whatsapp-opens-whatsapp-chat-to-971-585473939",
+      "featureTitle": "Build the Homepage hero section with logo display and the exact copy: Headline “Elegant Abaya Collection in Abu Dhabi”; subtext “Custom Tailoring & Embroidery – Latest Designs & Offers”; and CTA buttons “View Collection” (navigates to the Collection page) and “Order on WhatsApp” (opens WhatsApp chat to +971 585473939).",
+      "files": [
+        "frontend/src/pages/HomePage.tsx",
+        "frontend/src/utils/whatsapp.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-the-abaya-collection-page-with-product-cards-displaying-multiple-photos-model-name-price-aed-sizes-available-fabric-details-embroidery-details-an-offer-badge-when-discounted-an-order-via-whatsapp-button-and-an-enquire-now-button-that-opens-an-enquiry-form-pre-filled-with-the-selected-product",
+      "featureTitle": "Build the Abaya Collection page with product cards displaying multiple photos, model name, price (AED), sizes available, fabric details, embroidery details, an offer badge when discounted, an “Order via WhatsApp” button, and an “Enquire Now” button that opens an enquiry form pre-filled with the selected product.",
+      "files": [
+        "frontend/src/components/enquiry/EnquiryDialog.tsx",
+        "frontend/src/pages/CollectionPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-collection-page-filters-new-arrivals-offers-price-range-size-and-color-filters-must-update-the-visible-product-list-without-a-full-page-reload",
+      "featureTitle": "Add Collection page filters: New arrivals, Offers, Price range, Size, and Color; filters must update the visible product list without a full page reload.",
+      "files": [
+        "frontend/src/components/products/ProductFilters.tsx",
+        "frontend/src/pages/CollectionPage.tsx",
+        "frontend/src/utils/productFiltering.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-a-current-offers-page-that-highlights-discounted-abayas-with-old-price-new-price-and-includes-an-offer-banner-slider-that-is-admin-editable",
+      "featureTitle": "Create a Current Offers page that highlights discounted abayas with old price + new price, and includes an offer banner slider that is admin-editable.",
+      "files": [
+        "frontend/src/components/offers/OfferBannerSlider.tsx",
+        "frontend/src/pages/OffersPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-new-arrivals-behavior-latest-uploaded-products-appear-first-where-applicable-show-a-visible-upload-date-and-display-a-new-ribbon-tag-on-products-marked-as-new",
+      "featureTitle": "Implement New Arrivals behavior: latest uploaded products appear first where applicable, show a visible upload date, and display a “NEW” ribbon/tag on products marked as new.",
+      "files": [
+        "frontend/src/components/products/ProductCard.tsx",
+        "frontend/src/pages/CollectionPage.tsx",
+        "frontend/src/pages/ProductDetailsPage.tsx",
+        "frontend/src/utils/format.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-a-product-details-page-that-supports-a-quick-order-flow-size-selector-custom-tailoring-request-text-box-and-a-whatsapp-order-button-that-opens-whatsapp-to-971-585473939-with-the-exact-auto-message-template-hello-i-want-to-order-this-abaya-model-product-name-with-product-name-replaced-by-the-product-model-name",
+      "featureTitle": "Create a Product Details page that supports a quick order flow: size selector, custom tailoring request text box, and a WhatsApp order button that opens WhatsApp to +971 585473939 with the exact auto message template: “Hello, I want to order this abaya model: [Product Name]” (with [Product Name] replaced by the product model name).",
+      "files": [
+        "frontend/src/components/products/ProductCard.tsx",
+        "frontend/src/pages/ProductDetailsPage.tsx",
+        "frontend/src/utils/whatsapp.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-the-contact-page-with-the-exact-business-information-and-features-display-lila-boutique-tailoring-embroidery-the-full-address-al-khalidiya-behind-muhairi-centre-building-28-abu-dhabi-uae-and-phone-whatsapp-971-585473939-plus-click-to-call-click-to-whatsapp-a-google-map-embed-and-a-contact-form-that-submits-enquiries-to-the-backend",
+      "featureTitle": "Build the Contact page with the exact business information and features: display “Lila Boutique – Tailoring & Embroidery”, the full address “Al Khalidiya, Behind Muhairi Centre – Building 28, Abu Dhabi – UAE”, and Phone/WhatsApp “+971 585473939”, plus click-to-call, click-to-WhatsApp, a Google Map embed, and a contact form that submits enquiries to the backend.",
+      "files": [
+        "frontend/src/pages/ContactPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-10"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-a-secure-admin-dashboard-with-login-using-internet-identity-and-authorization-that-restricts-admin-access-to-an-allowlist-of-admin-principals-stored-in-the-backend",
+      "featureTitle": "Implement a secure Admin Dashboard with login using Internet Identity and authorization that restricts admin access to an allowlist of admin principals stored in the backend.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/auth/AccessDeniedScreen.tsx",
+        "frontend/src/components/auth/AdminRouteGuard.tsx",
+        "frontend/src/hooks/useAdminStatus.ts",
+        "frontend/src/pages/admin/AdminDashboardPage.tsx",
+        "frontend/src/pages/admin/AdminLoginPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-11"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-admin-dashboard-features-allow-admins-to-add-edit-delete-products-upload-and-manage-multiple-product-images-set-prices-in-aed-manage-sizes-and-colors-mark-unmark-new-add-remove-offers-old-price-new-price-toggle-stock-availability-edit-homepage-offer-banners-update-contact-info-view-customer-enquiries-download-a-customer-list-and-manage-enquiry-status-new-contacted-ordered-including-a-whatsapp-reply-shortcut",
+      "featureTitle": "Admin dashboard features: allow admins to add/edit/delete products; upload and manage multiple product images; set prices in AED; manage sizes and colors; mark/unmark NEW; add/remove offers (old price/new price); toggle stock availability; edit homepage offer banners; update contact info; view customer enquiries; download a customer list; and manage enquiry status (New/Contacted/Ordered) including a WhatsApp reply shortcut.",
+      "files": [
+        "frontend/src/pages/admin/AdminDashboardPage.tsx",
+        "frontend/src/pages/admin/ContactAdminPage.tsx",
+        "frontend/src/pages/admin/EnquiriesAdminPage.tsx",
+        "frontend/src/pages/admin/OffersAdminPage.tsx",
+        "frontend/src/pages/admin/ProductsAdminPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-12"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

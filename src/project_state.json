@@ -1,0 +1,165 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Website for LilaC Boutique (Tailoring & Embroidery), a luxury abaya & custom tailoring business in Abu Dhabi, featuring product catalog, offers/new arrivals, WhatsApp ordering, contact page, and an admin dashboard for product/content management and enquiries.",
+  "architectural_notes": [
+    "Brand styling: deep purple primary, black + gold accents, clean white background; elegant script headings + clean sans-serif body; soft animations on scroll.",
+    "WhatsApp ordering integration: product-specific WhatsApp button with auto-message template including product name/model.",
+    "Admin-editable content areas: offers slider, homepage banners, contact info, product inventory/stock toggles."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Luxury fabric-like abstract hero background with deep purple gradient and subtle gold accents (hero-bg.dim_1920x1080.png)\n- Elegant repeating pattern inspired by arabesque motifs in very light gold on white (pattern-bg.dim_2048x2048.png)\n- Set of 3 minimal offer slider banners with purple/black/gold luxury style, no text (offer-banner-1.dim_1600x500.png)\n- Set of 3 minimal offer slider banners with purple/black/gold luxury style, no text (offer-banner-2.dim_1600x500.png)\n- Set of 3 minimal offer slider banners with purple/black/gold luxury style, no text (offer-banner-3.dim_1600x500.png)\n- Square product placeholder image with a premium boutique aesthetic (product-placeholder.dim_800x800.png)",
+  "existing_features": [
+    {
+      "id": "feature-implement-a-consistent-luxury-boutique-ui-theme-for-lilac-boutique-using-deep-purple-as-the-primary-color-with-black-gold-accents-clean-white-backgrounds-elegant-script-headings-sans-serif-body-typography-and-soft-scroll-section-animations-across-the-site",
+      "title": "Implement a consistent luxury boutique UI theme for “LilaC Boutique” using deep purple as the primary color, with black + gold accents, clean white backgrounds, elegant script headings + sans-serif body typography, and soft scroll/section animations across the site.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-the-public-site-navigation-and-pages-homepage-abaya-collection-current-offers-contact-and-product-details-pages-with-a-header-that-displays-the-logo-brand-name-and-links-to-the-main-pages",
+      "title": "Create the public site navigation and pages: Homepage, Abaya Collection, Current Offers, Contact, and Product Details pages, with a header that displays the logo/brand name and links to the main pages.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-the-homepage-hero-section-with-logo-display-and-the-exact-copy-headline-elegant-abaya-collection-in-abu-dhabi-subtext-custom-tailoring-embroidery-latest-designs-offers-and-cta-buttons-view-collection-navigates-to-the-collection-page-and-order-on-whatsapp-opens-whatsapp-chat-to-971-585473939",
+      "title": "Build the Homepage hero section with logo display and the exact copy: Headline “Elegant Abaya Collection in Abu Dhabi”; subtext “Custom Tailoring & Embroidery – Latest Designs & Offers”; and CTA buttons “View Collection” (navigates to the Collection page) and “Order on WhatsApp” (opens WhatsApp chat to +971 585473939).",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-the-abaya-collection-page-with-product-cards-displaying-multiple-photos-model-name-price-aed-sizes-available-fabric-details-embroidery-details-an-offer-badge-when-discounted-an-order-via-whatsapp-button-and-an-enquire-now-button-that-opens-an-enquiry-form-pre-filled-with-the-selected-product",
+      "title": "Build the Abaya Collection page with product cards displaying multiple photos, model name, price (AED), sizes available, fabric details, embroidery details, an offer badge when discounted, an “Order via WhatsApp” button, and an “Enquire Now” button that opens an enquiry form pre-filled with the selected product.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-collection-page-filters-new-arrivals-offers-price-range-size-and-color-filters-must-update-the-visible-product-list-without-a-full-page-reload",
+      "title": "Add Collection page filters: New arrivals, Offers, Price range, Size, and Color; filters must update the visible product list without a full page reload.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-current-offers-page-that-highlights-discounted-abayas-with-old-price-new-price-and-includes-an-offer-banner-slider-that-is-admin-editable",
+      "title": "Create a Current Offers page that highlights discounted abayas with old price + new price, and includes an offer banner slider that is admin-editable.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-new-arrivals-behavior-latest-uploaded-products-appear-first-where-applicable-show-a-visible-upload-date-and-display-a-new-ribbon-tag-on-products-marked-as-new",
+      "title": "Implement New Arrivals behavior: latest uploaded products appear first where applicable, show a visible upload date, and display a “NEW” ribbon/tag on products marked as new.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-product-details-page-that-supports-a-quick-order-flow-size-selector-custom-tailoring-request-text-box-and-a-whatsapp-order-button-that-opens-whatsapp-to-971-585473939-with-the-exact-auto-message-template-hello-i-want-to-order-this-abaya-model-product-name-with-product-name-replaced-by-the-product-model-name",
+      "title": "Create a Product Details page that supports a quick order flow: size selector, custom tailoring request text box, and a WhatsApp order button that opens WhatsApp to +971 585473939 with the exact auto message template: “Hello, I want to order this abaya model: [Product Name]” (with [Product Name] replaced by the product model name).",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-the-contact-page-with-the-exact-business-information-and-features-display-lila-boutique-tailoring-embroidery-the-full-address-al-khalidiya-behind-muhairi-centre-building-28-abu-dhabi-uae-and-phone-whatsapp-971-585473939-plus-click-to-call-click-to-whatsapp-a-google-map-embed-and-a-contact-form-that-submits-enquiries-to-the-backend",
+      "title": "Build the Contact page with the exact business information and features: display “Lila Boutique – Tailoring & Embroidery”, the full address “Al Khalidiya, Behind Muhairi Centre – Building 28, Abu Dhabi – UAE”, and Phone/WhatsApp “+971 585473939”, plus click-to-call, click-to-WhatsApp, a Google Map embed, and a contact form that submits enquiries to the backend.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-secure-admin-dashboard-with-login-using-internet-identity-and-authorization-that-restricts-admin-access-to-an-allowlist-of-admin-principals-stored-in-the-backend",
+      "title": "Implement a secure Admin Dashboard with login using Internet Identity and authorization that restricts admin access to an allowlist of admin principals stored in the backend.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-admin-dashboard-features-allow-admins-to-add-edit-delete-products-upload-and-manage-multiple-product-images-set-prices-in-aed-manage-sizes-and-colors-mark-unmark-new-add-remove-offers-old-price-new-price-toggle-stock-availability-edit-homepage-offer-banners-update-contact-info-view-customer-enquiries-download-a-customer-list-and-manage-enquiry-status-new-contacted-ordered-including-a-whatsapp-reply-shortcut",
+      "title": "Admin dashboard features: allow admins to add/edit/delete products; upload and manage multiple product images; set prices in AED; manage sizes and colors; mark/unmark NEW; add/remove offers (old price/new price); toggle stock availability; edit homepage offer banners; update contact info; view customer enquiries; download a customer list; and manage enquiry status (New/Contacted/Ordered) including a WhatsApp reply shortcut.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create luxury boutique website UI/branding (purple/black/gold, elegant script headings, sans-serif body, soft scroll animations) with homepage hero and CTAs (View Collection, Order on WhatsApp)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Implement Abaya Collection page with product cards (multi-photos, model name, price AED, sizes, fabric/embroidery details, offer badge) and filters (new arrivals, offers, price range, size, color)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Add Current Offers page (discounted items with old/new price, offer banner slider, admin-editable)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Add New Arrivals section behavior (latest uploaded first, NEW ribbon tag, upload date visible)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Create Contact page with business address/phone, click-to-call, click-to-WhatsApp, Google Maps embed, and contact form",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Quick Order system on product pages: WhatsApp order button with auto-filled message, size selector, and custom tailoring request box",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Secure admin dashboard with login to manage products (add/edit/delete), upload images, pricing, sizes/colors, mark NEW, manage offers, change homepage banners, update contact info, toggle stock, view enquiries, download customer list",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Customer enquiry panel in admin: view name/phone/product/message/date, WhatsApp reply shortcut, and status workflow (New/Contacted/Ordered)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Implement backend data models and APIs to support: Abaya products (multiple photos, model name, price in AED, available sizes, available colors, fabric details, embroidery details, stock availability, isNew flag, upload date), offers (discounted price and old price), and homepage offer banners (for slider).",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "LilaC Boutique Website",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

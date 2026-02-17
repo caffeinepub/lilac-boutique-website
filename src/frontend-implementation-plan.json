@@ -1,0 +1,428 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "LilaC Boutique luxury abaya website (frontend)",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Implement a consistent luxury boutique theme (deep purple primary, black+gold accents, elegant heading font + sans-serif body, subtle scroll/section animations) across all pages.",
+      "acceptanceCriteria": [
+        "All pages share a single design system (colors, typography, spacing, button styles).",
+        "Animations are subtle and do not block content interaction or navigation.",
+        "No user-facing text is non-English."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/main.tsx",
+          "operation": "modify",
+          "description": "Fix global stylesheet import to ensure the site loads the shared design system styles (align with actual CSS entry at frontend/index.css)."
+        },
+        {
+          "path": "frontend/index.css",
+          "operation": "modify",
+          "description": "Define the LilaC Boutique luxury design tokens (deep purple primary, black/gold accents, white backgrounds), base typography styles, shared button/link styles, and reusable utility classes for consistent spacing and cards."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend Tailwind theme with LilaC-specific color palette and animation utilities used for subtle scroll/section reveals (aligning with tailwindcss-animate)."
+        },
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Wire in heading/body fonts (elegant script for headings, clean sans-serif for body) via standard web font loading, and ensure language is English-ready (lang already set to en)."
+        },
+        {
+          "path": "frontend/src/components/ScrollReveal.tsx",
+          "operation": "create",
+          "description": "Create a reusable wrapper component that applies subtle on-scroll reveal animations via IntersectionObserver and Tailwind classes; use it throughout sections to satisfy the soft animation requirement."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Create public navigation and pages: Homepage, Abaya Collection, Current Offers, Contact, and Product Details, with a header showing brand and links.",
+      "acceptanceCriteria": [
+        "A user can navigate between Homepage, Collection, Offers, Contact without dead links.",
+        "Product cards and product details are accessible from the Collection and Offers pages.",
+        "Brand name “LilaC Boutique” and tagline “Tailoring & Embroidery” are visible in the header or homepage hero."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Create the app shell with routing for Homepage, Collection, Offers, Contact, and Product Details, and include a shared layout with header/footer to ensure consistent navigation wiring (no orphan pages)."
+        },
+        {
+          "path": "frontend/src/components/layout/SiteHeader.tsx",
+          "operation": "create",
+          "description": "Create the luxury header showing “LilaC Boutique” and tagline “Tailoring & Embroidery”, plus navigation links to Home, Abaya Collection, Current Offers, and Contact."
+        },
+        {
+          "path": "frontend/src/components/layout/SiteFooter.tsx",
+          "operation": "create",
+          "description": "Create a footer consistent with the theme (no extra pages), optionally repeating key contact/WhatsApp CTA links in English."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "create",
+          "description": "Create Homepage view containing the required hero and supporting sections; ensure it is reachable from the header navigation."
+        },
+        {
+          "path": "frontend/src/pages/CollectionPage.tsx",
+          "operation": "create",
+          "description": "Create Abaya Collection page view that lists products with filters and supports navigation to Product Details and enquiry flow."
+        },
+        {
+          "path": "frontend/src/pages/OffersPage.tsx",
+          "operation": "create",
+          "description": "Create Current Offers page view that shows discounted products and the banner slider backed by backend-managed offer data."
+        },
+        {
+          "path": "frontend/src/pages/ContactPage.tsx",
+          "operation": "create",
+          "description": "Create Contact page view with business info, map embed, and contact form that submits to the backend."
+        },
+        {
+          "path": "frontend/src/pages/ProductDetailsPage.tsx",
+          "operation": "create",
+          "description": "Create Product Details page view reachable from product cards (Collection/Offers) using a route param for product id."
+        },
+        {
+          "path": "frontend/src/components/products/ProductCard.tsx",
+          "operation": "create",
+          "description": "Create a reusable product card used by Collection and Offers pages; includes key fields and links to Product Details (ensures accessibility from list views)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Build the Homepage hero with exact copy and CTA buttons for Collection and WhatsApp ordering (+971 585473939).",
+      "acceptanceCriteria": [
+        "Hero headline and subtext match exactly (including punctuation).",
+        "“View Collection” navigates to the Collection page route.",
+        "“Order on WhatsApp” opens a wa.me link for +971 585473939 in a new tab/window."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Implement the hero section with exact headline “Elegant Abaya Collection in Abu Dhabi” and subtext “Custom Tailoring & Embroidery – Latest Designs & Offers”, plus CTAs wired to Collection route and WhatsApp chat to +971 585473939 (open new tab)."
+        },
+        {
+          "path": "frontend/src/utils/whatsapp.ts",
+          "operation": "create",
+          "description": "Add a small helper to generate wa.me links for +971 585473939 with URL-encoded prefilled messages used across hero, cards, and product details (keeps message templates consistent)."
+        },
+        {
+          "path": "frontend/public/assets/generated/hero-bg.dim_1920x1080.png",
+          "operation": "create",
+          "description": "Add the generated hero background image asset and use it in the Homepage hero styling. Reference this exact file path in the hero implementation."
+        },
+        {
+          "path": "frontend/public/assets/generated/pattern-bg.dim_2048x2048.png",
+          "operation": "create",
+          "description": "Add the generated subtle pattern background asset and use it as a light site-wide decorative background (e.g., layout or section backgrounds) consistent with the luxury theme."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Build the Abaya Collection page with rich product cards, WhatsApp ordering, and an Enquire Now flow prefilled with the selected product.",
+      "acceptanceCriteria": [
+        "Product cards display all requested fields when present.",
+        "If a product has an offer, an offer badge is shown and pricing clearly indicates the discounted state.",
+        "“Order via WhatsApp” opens WhatsApp with a product-specific prefilled message (see REQ-9).",
+        "“Enquire Now” opens an enquiry form with the product already selected."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/CollectionPage.tsx",
+          "operation": "modify",
+          "description": "Fetch and render products, display all requested fields (multiple photos, model name, AED price, sizes, fabric/embroidery details, discount badge/pricing state), and wire the two actions: WhatsApp order + Enquire Now prefilled with selected product."
+        },
+        {
+          "path": "frontend/src/components/products/ProductGallery.tsx",
+          "operation": "create",
+          "description": "Create a compact multi-photo display for cards (hover/thumbnail/mini-carousel) and a fuller gallery for details; use ExternalBlob.getDirectURL() for image rendering. Use the blob-storage component concept (ExternalBlob direct URLs) to support images. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/enquiry/EnquiryDialog.tsx",
+          "operation": "create",
+          "description": "Create an enquiry form modal/dialog used by Collection (prefilled product) and optionally Product Details; compose shadcn-ui dialog/form primitives without editing frontend/src/components/ui. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/products/OfferBadge.tsx",
+          "operation": "create",
+          "description": "Create a reusable badge/ribbon component for discounted products (and support NEW ribbon via REQ-8) styled in the luxury theme."
+        },
+        {
+          "path": "frontend/public/assets/generated/product-placeholder.dim_800x800.png",
+          "operation": "create",
+          "description": "Add the generated product placeholder image asset and use it as the fallback when a product has zero images or while images load."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Add Collection filters (New arrivals, Offers, Price range, Size, Color) that update results client-side without full reload and persist in URL or session.",
+      "acceptanceCriteria": [
+        "Each listed filter exists in the UI and changes the displayed list.",
+        "The Offers filter shows only discounted products.",
+        "New arrivals filter/sort prioritizes the latest uploaded items (see REQ-8).",
+        "Filtering state is reflected in the URL (query params) or persisted during navigation within the session."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/CollectionPage.tsx",
+          "operation": "modify",
+          "description": "Add filter UI and client-side filtering/sorting; synchronize filter state into URL query params using the router so filters persist across navigation within the session."
+        },
+        {
+          "path": "frontend/src/components/products/ProductFilters.tsx",
+          "operation": "create",
+          "description": "Create the filter panel (New arrivals, Offers, Price range, Size, Color) using composed shadcn-ui components (e.g., Select/Slider/Checkbox) without editing frontend/src/components/ui. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/utils/productFiltering.ts",
+          "operation": "create",
+          "description": "Centralize filter + sort logic (including newest-first using uploadDate, offers-only based on old/new price fields, and size/color matching) to keep CollectionPage concise."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Create Current Offers page that lists discounted abayas and includes an offer banner slider fed by backend-managed banner data.",
+      "acceptanceCriteria": [
+        "Offers page shows only products with an active discount.",
+        "For discounted products, old price and new price are both shown clearly in AED.",
+        "A banner slider component is present and pulls its slides from backend-managed banner data."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/OffersPage.tsx",
+          "operation": "modify",
+          "description": "Fetch discounted products and offer banners, render discounted pricing (old/new AED) and an offer banner slider backed by backend getOffers() data."
+        },
+        {
+          "path": "frontend/src/components/offers/OfferBannerSlider.tsx",
+          "operation": "create",
+          "description": "Implement a simple slider/carousel that renders backend-managed Offer items (image via ExternalBlob.getDirectURL()) and supports subtle transitions consistent with the luxury theme. Use the blob-storage component concept (ExternalBlob direct URLs) for banner images. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/public/assets/generated/offer-banner-1.dim_1600x500.png",
+          "operation": "create",
+          "description": "Add generated offer banner image asset; use as a default/fallback slide if backend has no configured banners (public UI remains polished)."
+        },
+        {
+          "path": "frontend/public/assets/generated/offer-banner-2.dim_1600x500.png",
+          "operation": "create",
+          "description": "Add generated offer banner image asset; use as a default/fallback slide if needed."
+        },
+        {
+          "path": "frontend/public/assets/generated/offer-banner-3.dim_1600x500.png",
+          "operation": "create",
+          "description": "Add generated offer banner image asset; use as a default/fallback slide if needed."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Implement New Arrivals UI behavior: newest-first where applicable, show upload date, and show a “NEW” tag for isNew products.",
+      "acceptanceCriteria": [
+        "Backend stores an upload/created timestamp per product and returns it.",
+        "UI shows upload date for each product in list and/or detail views.",
+        "Products marked isNew display a “NEW” tag; sorting by newest is correct."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/products/ProductCard.tsx",
+          "operation": "modify",
+          "description": "Display upload date and a visible “NEW” tag when isNew is true; ensure tag styling matches luxury theme and is readable."
+        },
+        {
+          "path": "frontend/src/pages/CollectionPage.tsx",
+          "operation": "modify",
+          "description": "Ensure default sort or a New arrivals mode prioritizes latest uploadDate first, and that upload date is visible in the list view."
+        },
+        {
+          "path": "frontend/src/pages/ProductDetailsPage.tsx",
+          "operation": "modify",
+          "description": "Show upload date and “NEW” tag on the product detail view to reinforce New Arrivals behavior."
+        },
+        {
+          "path": "frontend/src/utils/format.ts",
+          "operation": "create",
+          "description": "Add a small formatter for bigint Time uploadDate into a human-readable English date string (consistent across list/detail)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Create Product Details quick order flow with size selector, custom tailoring request input, and WhatsApp button using the exact message template.",
+      "acceptanceCriteria": [
+        "Size selector is populated from the product’s available sizes.",
+        "Custom tailoring request box accepts free text and is included in the WhatsApp message if provided (appended after the required template).",
+        "WhatsApp link includes the required template with the correct product name and opens successfully."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/ProductDetailsPage.tsx",
+          "operation": "modify",
+          "description": "Implement quick order UI: size selector from product.sizes, custom tailoring request textbox, and WhatsApp order button that opens WhatsApp to +971 585473939 with exact template “Hello, I want to order this abaya model: [Product Name]” and appends size/tailoring text when provided."
+        },
+        {
+          "path": "frontend/src/utils/whatsapp.ts",
+          "operation": "modify",
+          "description": "Add support for building the exact required Product Details message template and appending optional extra lines (size, tailoring request) while preserving the required leading sentence exactly."
+        },
+        {
+          "path": "frontend/src/components/products/ProductCard.tsx",
+          "operation": "modify",
+          "description": "Wire “Order via WhatsApp” on product cards to open WhatsApp with a product-specific prefilled message consistent with REQ-9’s template (using the shared helper)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Build the Contact page with exact business info, click-to-call/WhatsApp, Google Map embed, and a contact form that submits enquiries to the backend.",
+      "acceptanceCriteria": [
+        "Displayed text matches exactly for name, address, and phone/WhatsApp number.",
+        "Click-to-call uses a tel: link for +971 585473939.",
+        "Click-to-WhatsApp opens a wa.me link for +971 585473939.",
+        "Map embed renders via an iframe embed (no external API key required).",
+        "Contact form submissions are stored as enquiries in the backend and visible in admin (REQ-12)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/ContactPage.tsx",
+          "operation": "modify",
+          "description": "Implement exact contact text display, tel: link, wa.me link, an iframe-based Google Map embed, and a contact form wired to backend submitEnquiry(); show a success/failure state in English."
+        },
+        {
+          "path": "frontend/src/hooks/useContactInfo.ts",
+          "operation": "create",
+          "description": "Create a React Query hook that fetches backend contact info (getContactInfo) so public Contact page can reflect admin updates when available, with a graceful fallback to the required static copy if data is missing/unavailable."
+        },
+        {
+          "path": "frontend/src/hooks/useSubmitEnquiry.ts",
+          "operation": "create",
+          "description": "Create a React Query mutation hook for submitEnquiry(name, email, message) used by the Contact page form and any shared enquiry dialog."
+        }
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "summary": "Implement Admin Dashboard authentication using Internet Identity and restrict admin routes in the UI; show access denied for non-admin principals.",
+      "acceptanceCriteria": [
+        "Unauthenticated users cannot access admin routes; they are redirected to an admin login screen.",
+        "Authenticated non-admin principals receive an access denied state and cannot perform admin mutations.",
+        "Backend stores and checks an admin allowlist before allowing any admin write operation."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add admin routes (e.g., /admin/login and /admin) and wire route guards so unauthenticated users are redirected to the admin login screen and authenticated non-admins see an access denied screen."
+        },
+        {
+          "path": "frontend/src/pages/admin/AdminLoginPage.tsx",
+          "operation": "create",
+          "description": "Create an admin login page that uses the authorization component’s Internet Identity flow (via existing useInternetIdentity hook) to log in/out and then checks admin status before allowing entry. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/admin/AdminDashboardPage.tsx",
+          "operation": "create",
+          "description": "Create the admin dashboard shell and navigation for admin tools (products, offers/banners, contact info, enquiries/customers). This page must only render after passing the admin guard."
+        },
+        {
+          "path": "frontend/src/components/auth/AdminRouteGuard.tsx",
+          "operation": "create",
+          "description": "Create a guard component that checks authentication (Internet Identity) and backend isCallerAdmin()/getCallerUserRole() and routes to login or access denied accordingly. Use the authorization component capabilities for role-based access patterns. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/auth/AccessDeniedScreen.tsx",
+          "operation": "create",
+          "description": "Create an English access denied UI state for authenticated non-admin users attempting to access admin routes."
+        },
+        {
+          "path": "frontend/src/hooks/useAdminStatus.ts",
+          "operation": "create",
+          "description": "Create a React Query hook to fetch isCallerAdmin and/or getCallerUserRole from the backend to power admin route gating and conditional rendering."
+        }
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "summary": "Build Admin Dashboard features: manage products (including multi-image upload), offers/banners, contact info, view/manage enquiries + statuses, WhatsApp reply shortcut, and download customer list CSV.",
+      "acceptanceCriteria": [
+        "Admin can create, update, and delete products and see changes reflected immediately in public pages.",
+        "Admin can upload multiple images per product and reorder/remove them.",
+        "Admin can set/clear an offer with old price and new price; public UI reflects discounts and offer badges.",
+        "Admin can toggle isNew and inStock flags.",
+        "Admin can manage a list of banner slides used by the Offers page slider and/or homepage banner area.",
+        "Admin can update contact info stored in backend and public Contact page reflects updates.",
+        "Admin can view enquiries with: name, phone, product, message, date, status; can change status among New/Contacted/Ordered.",
+        "WhatsApp reply shortcut opens WhatsApp to the customer number (if provided) with a prefilled response context.",
+        "Customer list download exports a CSV file of enquiry contacts (at minimum: name, phone, date, product where available)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/admin/AdminDashboardPage.tsx",
+          "operation": "modify",
+          "description": "Implement admin dashboard navigation and render the required management panels (products, offers/banners, contact info, enquiries/customers) behind the admin guard."
+        },
+        {
+          "path": "frontend/src/pages/admin/ProductsAdminPage.tsx",
+          "operation": "create",
+          "description": "Create product management UI for add/edit/delete, price in AED, sizes/colors, isNew/inStock toggles, set/clear offer prices, and manage multiple images (upload/remove/reorder in UI). Use blob-storage ExternalBlob flows (upload then render via direct URL). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/admin/OffersAdminPage.tsx",
+          "operation": "create",
+          "description": "Create offers/banner management UI to add/edit/delete offer banners (image + bannerText) that feed the public slider; use ExternalBlob upload/render. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/admin/ContactAdminPage.tsx",
+          "operation": "create",
+          "description": "Create contact info admin UI to update businessName/address/phone via backend updateContactInfo; ensure public Contact page reflects updates."
+        },
+        {
+          "path": "frontend/src/pages/admin/EnquiriesAdminPage.tsx",
+          "operation": "create",
+          "description": "Create enquiries panel to list enquiries with date/status, allow status updates (New/Contacted/Ordered), and provide a WhatsApp reply shortcut when a customer number is available in the record."
+        },
+        {
+          "path": "frontend/src/hooks/admin/useAdminProducts.ts",
+          "operation": "create",
+          "description": "Create React Query hooks for admin product operations (list/get, add, update, delete) and cache invalidation to refresh public/admin views after mutations."
+        },
+        {
+          "path": "frontend/src/hooks/admin/useAdminOffers.ts",
+          "operation": "create",
+          "description": "Create React Query hooks for offers/banner CRUD and cache invalidation so the public Offers slider updates after admin changes."
+        },
+        {
+          "path": "frontend/src/hooks/admin/useAdminEnquiries.ts",
+          "operation": "create",
+          "description": "Create React Query hooks to fetch enquiries and update enquiry status; ensure UI handles authorization failures gracefully."
+        },
+        {
+          "path": "frontend/src/hooks/admin/useCustomerListDownload.ts",
+          "operation": "create",
+          "description": "Implement CSV download in the browser using backend getCustomerList(); generate a CSV with at least name, phone, and include additional columns if available from the UI context (e.g., date/product when present)."
+        },
+        {
+          "path": "frontend/src/components/admin/ImageUploader.tsx",
+          "operation": "create",
+          "description": "Create a reusable image uploader component for multiple images with progress indication and remove/reorder UI; use blob-storage ExternalBlob and backend uploadProductImage(). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/admin/AdminSectionLayout.tsx",
+          "operation": "create",
+          "description": "Create a consistent layout wrapper for admin sections (titles, actions, panels) that matches the luxury theme and improves usability without adding new public routes."
+        }
+      ]
+    }
+  ]
+}
